@@ -298,7 +298,7 @@ CamelRequestReference.prototype.get = function (){
 CamelRequestReference.prototype.__circularp = function (previousRequests){
   var found = this.__camel.find(this.__name);
   if (found){
-    return found.circularp(previousRequests);
+    return found.__circularp(previousRequests);
   }
   else {
     throw new Error("" + this.__name + " is undefined in Camel instance.");
@@ -356,7 +356,7 @@ CamelBoundRequest.prototype.get = function (){
  */
 
 CamelBoundRequest.prototype.__circularp = function (previousRequests){
-  if (this.__request.circularp(previousRequests)){
+  if (this.__request.__circularp(previousRequests)){
     return true;
   }
   else {
@@ -365,7 +365,7 @@ CamelBoundRequest.prototype.__circularp = function (previousRequests){
       var depend = this.__depends[index];
       var previous = previousRequests.slice();
       previous.push(this.__request);
-      if (depend.circularp(previous)){
+      if (depend.__circularp(previous)){
         return true;
       }
     }

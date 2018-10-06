@@ -50,7 +50,7 @@ CamelBoundRequest.prototype.get = function (){
  */
 
 CamelBoundRequest.prototype.__circularp = function (previousRequests){
-  if (this.__request.circularp(previousRequests)){
+  if (this.__request.__circularp(previousRequests)){
     return true;
   }
   else {
@@ -59,7 +59,7 @@ CamelBoundRequest.prototype.__circularp = function (previousRequests){
       var depend = this.__depends[index];
       var previous = previousRequests.slice();
       previous.push(this.__request);
-      if (depend.circularp(previous)){
+      if (depend.__circularp(previous)){
         return true;
       }
     }

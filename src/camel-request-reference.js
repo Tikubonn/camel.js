@@ -56,7 +56,7 @@ CamelRequestReference.prototype.get = function (){
 CamelRequestReference.prototype.__circularp = function (previousRequests){
   var found = this.__camel.find(this.__name);
   if (found){
-    return found.circularp(previousRequests);
+    return found.__circularp(previousRequests);
   }
   else {
     throw new Error("" + this.__name + " is undefined in Camel instance.");
